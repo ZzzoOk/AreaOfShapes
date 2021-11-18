@@ -9,10 +9,11 @@ namespace AreaOfShapesTests
         [Fact]
         public void GetArea_WithValidRadius_ReturnsValue()
         {
-            var r = 3;
+            var circle = new Circle(3);
+
             var expected = 28.27;
 
-            var actual = Circle.GetArea(r);
+            var actual = circle.GetArea();
 
             Assert.Equal(expected, actual, 2);
         }
@@ -20,20 +21,7 @@ namespace AreaOfShapesTests
         [Fact]
         public void GetArea_WhenRadiusIsLessThanZero_ShouldThrowArgumentOutOfRange()
         {
-            var r = -4;
-
-            Assert.Throws<ArgumentOutOfRangeException>(() => Circle.GetArea(r));
-        }
-
-        [Fact]
-        public void ShapesGetArea_WithValidRadius_ReturnsValue()
-        {
-            var r = 3;
-            var expected = 28.27;
-
-            var actual = Shapes.GetArea(r);
-
-            Assert.Equal(expected, actual, 2);
+            Assert.Throws<ArgumentOutOfRangeException>(() => new Circle(-4));
         }
     }
 }

@@ -9,12 +9,11 @@ namespace AreaOfShapesTests
         [Fact]
         public void GetArea_WithValidSides_ReturnsValue()
         {
-            var a = 3;
-            var b = 4;
-            var c = 5;
+            var triangle = new Triangle(3, 4, 5);
+
             var expected = 6;
 
-            var actual = Triangle.GetArea(a, b, c);
+            var actual = triangle.GetArea();
 
             Assert.Equal(expected, actual, 2);
         }
@@ -22,34 +21,25 @@ namespace AreaOfShapesTests
         [Fact]
         public void GetArea_WhenOneSideIsLessThanZero_ShouldThrowArgumentOutOfRange()
         {
-            var a = 3;
-            var b = 4;
-            var c = -5;
-
-            Assert.Throws<ArgumentOutOfRangeException>(() => Triangle.GetArea(a, b, c));
+            Assert.Throws<ArgumentOutOfRangeException>(() => new Triangle(3, 4, -5));
         }
 
         [Fact]
         public void GetArea_WhenOneSideIsGreaterThanOthers_ShouldThrowArgumentOutOfRange()
         {
-            var a = 3;
-            var b = 4;
-            var c = 8;
-
-            Assert.Throws<ArgumentOutOfRangeException>(() => Triangle.GetArea(a, b, c));
+            Assert.Throws<ArgumentOutOfRangeException>(() => new Triangle(3, 4, 8));
         }
 
         [Fact]
-        public void ShapesGetArea_WithValidSides_ReturnsValue()
+        public void IsRightAngled_WhenRightAngledTriangle_ReturnsTrue()
         {
-            var a = 3;
-            var b = 4;
-            var c = 5;
-            var expected = 6;
+            var triangle = new Triangle(3, 4, 5);
 
-            var actual = Shapes.GetArea(a, b, c);
+            var expected = true;
 
-            Assert.Equal(expected, actual, 2);
+            var actual = triangle.IsRightAngled();
+
+            Assert.Equal(expected, actual);
         }
     }
 }
